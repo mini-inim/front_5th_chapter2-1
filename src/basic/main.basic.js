@@ -8,6 +8,7 @@ function main() {
     {id: 'p4', name: '상품4', val: 15000, q: 0 },
     {id: 'p5', name: '상품5', val: 25000, q: 10 }
   ];
+
   var root=document.getElementById('app');
   let cont=document.createElement('div');
   var wrap=document.createElement('div');
@@ -31,6 +32,7 @@ function main() {
   stockInfo.className='text-sm text-gray-500 mt-2';
   hTxt.textContent='장바구니';
   addBtn.textContent='추가';
+
   updateSelOpts();
   wrap.appendChild(hTxt);
   wrap.appendChild(cartDisp);
@@ -41,6 +43,9 @@ function main() {
   cont.appendChild(wrap);
   root.appendChild(cont);
   calcCart();
+
+  
+  //할인 알람
   setTimeout(function () {
     setInterval(function () {
       var luckyItem=prodList[Math.floor(Math.random() * prodList.length)];
@@ -51,6 +56,9 @@ function main() {
       }
     }, 30000);
   }, Math.random() * 10000);
+
+
+  //추가 구매 제안 알람
   setTimeout(function () {
     setInterval(function () {
       if(lastSel) {
@@ -64,6 +72,8 @@ function main() {
     }, 60000);
   }, Math.random() * 20000);
 };
+
+//추가 함수
 function updateSelOpts() {
   sel.innerHTML='';
   prodList.forEach(function (item) {
@@ -74,6 +84,9 @@ function updateSelOpts() {
     sel.appendChild(opt);
   });
 }
+
+
+//가격 계산 함수
 function calcCart() {
   totalAmt=0;
   itemCnt=0;
@@ -130,6 +143,9 @@ function calcCart() {
   updateStockInfo();
   renderBonusPts();
 }
+
+
+//포인트 계산
 const renderBonusPts=() => {
   bonusPts = Math.floor(totalAmt / 1000);
   var ptsTag=document.getElementById('loyalty-points');
@@ -141,6 +157,9 @@ const renderBonusPts=() => {
   }
   ptsTag.textContent='(포인트: ' + bonusPts + ')';
 };
+
+
+//잔여 재고 확인 함수
 function updateStockInfo() {
   var infoMsg='';
   prodList.forEach(function (item) {
@@ -149,7 +168,11 @@ function updateStockInfo() {
   });
   stockInfo.textContent=infoMsg;
 }
+
+
 main();
+
+//이벤트 핸들러
 addBtn.addEventListener('click', function () {
   var selItem=sel.value;
   var itemToAdd=prodList.find(function (p) { return p.id === selItem; });
@@ -176,6 +199,9 @@ addBtn.addEventListener('click', function () {
     lastSel=selItem;
   }
 });
+
+
+//이벤트 핸들러 
 cartDisp.addEventListener('click', function (event) {
   var tgt=event.target;
   if(tgt.classList.contains('quantity-change') || tgt.classList.contains('remove-item')) {
