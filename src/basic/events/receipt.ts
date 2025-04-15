@@ -1,5 +1,6 @@
 import { Discount } from "../component/Discount";
 import { AMOUNT_OF_STOCKS, DISCOUNTS, PRODUCTS } from "../context/product";
+import { bonusPoint } from "./point";
 
 let totalAmount = 0;
 let itemCount = 0;
@@ -72,7 +73,7 @@ function updateReceipt() {
     updateStockInfo();
     
     //적립금 함수 실행
-    renderBonusPts();
+    bonusPoint(totalAmount);
   }
   
 
