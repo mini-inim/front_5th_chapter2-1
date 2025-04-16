@@ -1,24 +1,55 @@
+import { CartItem } from "../component/utils/CartItem";
 import { AMOUNT_OF_STOCKS, OUT_OF_STOCKS } from "../context/product";
 
 
-//카트에 아이템을 추가/삭제하는 함수
+//카트에 새 아이템을 담는 함수
+function addCartItem (item){
+  const newItem = CartItem(item);
+  document.getElementById('cart-items')!.appendChild(newItem);
+  item.stock--;  
+}
+
+//카트에 담긴 아이템을 추가 버튼으로 추가하는 함수
+function updateAddedItem(itemInCart, item){
+  let selectSpan = itemInCart.querySelector('span').textContent;
+  const currentQty = parseInt(selectSpan.split(AMOUNT_OF_STOCKS)[1]);
+  const newQty = currentQty + 1;
+
+  if(newQty > item.stock ){
+    alert(OUT_OF_STOCKS);
+    return;
+  }
+
+  console.log(newQty)
+
+  itemInCart.querySelector('span').textContent = `${item.name} - ${item.price}원 ${AMOUNT_OF_STOCKS} ${newQty}`;
+}
+
+
+//카트에 담긴 아이템을 -/+ 버튼으로 조정하는 함수
 function changeCartItem(itemElem, tgt, prod) {
+  console.log("itemElem: ", itemElem)
 
     let selectSpan = itemElem.querySelector('span').textContent;
 
     const qtyChange = parseInt(tgt.dataset.change);
     const currentQty = parseInt(selectSpan.split(AMOUNT_OF_STOCKS)[1]);
     const newQty = currentQty + qtyChange;
+    const maxStock = prod.stock + currentQty;
     
-    if(newQty > 0 && newQty <= prod.stock + currentQty) {
-      selectSpan = selectSpan.split(AMOUNT_OF_STOCKS)[0] + AMOUNT_OF_STOCKS + newQty;
-      prod.stock -= qtyChange;
-    } else if(newQty <= 0) {
+    if(newQty <= 0){
       itemElem.remove();
-      prod.q -= qtyChange;
-    } else {
-      alert(OUT_OF_STOCKS);
+      prod.stock -= qtyChange;
+      return;
     }
+
+    if(newQty > maxStock){
+      alert(OUT_OF_STOCKS);
+      return;
+    }
+
+    itemElem.querySelector('span').textContent = itemElem.querySelector('span').textContent.split(AMOUNT_OF_STOCKS)[0] + AMOUNT_OF_STOCKS + newQty;
+
 }
 
 
@@ -30,4 +61,4 @@ function removeCartItem(itemElem, prod){
     itemElem.remove();
 }
 
-export { changeCartItem, removeCartItem };
+export { addCartItem, updateAddedItem, changeCartItem, removeCartItem };
