@@ -4,6 +4,12 @@ import { AMOUNT_OF_STOCKS, OUT_OF_STOCKS } from "../context/product";
 
 //카트에 새 아이템을 담는 함수
 function addCartItem (item){
+
+  if(item.stock <= 0){
+    alert(OUT_OF_STOCKS);
+    return;
+  }
+
   const newItem = CartItem(item);
   document.getElementById('cart-items')!.appendChild(newItem);
   item.stock--;  
@@ -28,8 +34,6 @@ function updateAddedItem(itemInCart, item){
 
 //카트에 담긴 아이템을 -/+ 버튼으로 조정하는 함수
 function changeCartItem(itemElem, tgt, prod) {
-  console.log("itemElem: ", itemElem)
-
     let selectSpan = itemElem.querySelector('span').textContent;
 
     const qtyChange = parseInt(tgt.dataset.change);

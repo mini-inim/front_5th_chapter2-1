@@ -26,10 +26,10 @@ function main() {
 
   
   //할인 알람
-  setTimeout( discountAlert(), Math.random() * 10000);
+  setTimeout( discountAlert, Math.random() * 10000);
 
   //추가 구매 제안 알람
-  setTimeout( recommandAlert(), Math.random() * 20000 );
+  setTimeout( recommandAlert, Math.random() * 20000 );
 };
 
 

@@ -11,7 +11,6 @@ function updateReceipt() {
     let totalAfterDiscount = 0;
     let itemCount = 0;
 
-    console.log(cartItems.length)
     //기본 계산 함수 처리
     for (let i=0; i < cartItems.length; i++) {
 
@@ -33,12 +32,7 @@ function updateReceipt() {
         totalBeforeDiscount += totalItem;
         totalAfterDiscount += totalItem * (1 - discount);
         itemCount += qty;
-
-        console.log(`상품명: ${currentItem.name}, 수량: ${qty}, 단가: ${currentItem.price}, 할인율: ${discount}`);
-        console.log(`총합 전: ${totalBeforeDiscount}, 총합 후: ${totalAfterDiscount}`);
-        console.log(`itemCount: ${itemCount}`)
-
-      })(i);
+      })();
     }
 
     let discountRate=0;
