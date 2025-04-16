@@ -1,5 +1,6 @@
 import { PRODUCTS } from "./context/product";
 import { addCartItem, updateAddedItem, changeCartItem, removeCartItem } from "./events/item";
+import { updateReceipt } from "./events/receipt";
 
 
 function setupItemEvent(){
@@ -14,7 +15,6 @@ function handleAddItem(){
         return p.id === selItem;
     });
 
-    console.log("itemToAdd: ", itemToAdd);
     const item = document.getElementById(itemToAdd.id);
 
     if(item){
@@ -23,7 +23,7 @@ function handleAddItem(){
         addCartItem(itemToAdd);
     }
 
-    //잔여 item 개수 업데이트 함수 필요 
+    updateReceipt();
 }
 
 
@@ -45,7 +45,7 @@ function handleClickCartItem(event){
         removeCartItem(itemElem, tgt);
     }
 
-    //잔여 item 개수 업데이트 함수 필요
+    updateReceipt();
 }
 
 export {setupItemEvent};

@@ -15,14 +15,14 @@ function updateAddedItem(itemInCart, item){
   const currentQty = parseInt(selectSpan.split(AMOUNT_OF_STOCKS)[1]);
   const newQty = currentQty + 1;
 
-  if(newQty > item.stock ){
+
+  if(item.stock <= 0){
     alert(OUT_OF_STOCKS);
     return;
   }
 
-  console.log(newQty)
-
   itemInCart.querySelector('span').textContent = `${item.name} - ${item.price}원 ${AMOUNT_OF_STOCKS} ${newQty}`;
+  item.stock--;
 }
 
 
@@ -35,7 +35,7 @@ function changeCartItem(itemElem, tgt, prod) {
     const qtyChange = parseInt(tgt.dataset.change);
     const currentQty = parseInt(selectSpan.split(AMOUNT_OF_STOCKS)[1]);
     const newQty = currentQty + qtyChange;
-    const maxStock = prod.stock + currentQty;
+    const maxStock = prod.stock;
     
     if(newQty <= 0){
       itemElem.remove();
@@ -43,13 +43,13 @@ function changeCartItem(itemElem, tgt, prod) {
       return;
     }
 
-    if(newQty > maxStock){
+    if(prod.stock <= 0){
       alert(OUT_OF_STOCKS);
       return;
     }
 
     itemElem.querySelector('span').textContent = itemElem.querySelector('span').textContent.split(AMOUNT_OF_STOCKS)[0] + AMOUNT_OF_STOCKS + newQty;
-
+    prod.stock--;
 }
 
 

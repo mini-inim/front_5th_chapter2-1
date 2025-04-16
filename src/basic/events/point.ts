@@ -1,4 +1,4 @@
-import { RenderBonusPoint } from "../component/BonusPoint";
+import { RenderBonusPoint } from "../component/utils/BonusPoint";
 
 
 function bonusPoint(totalAmount){

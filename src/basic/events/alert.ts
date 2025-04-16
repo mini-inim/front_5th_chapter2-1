@@ -21,8 +21,7 @@ function discountAlert () {
 //추천 세일 알람
 function recommandAlert() {
 
-  const itemList = document.querySelectorAll('#cart-items > div');
-  const lastSel = itemList[0].id;
+  let lastSel;
 
   setInterval(function () {
     if(lastSel) {
