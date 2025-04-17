@@ -28,3 +28,7 @@ export interface CART_ITEM_EVENT{
     onChangeItem: (id: string, change: number) => void;
     onRemoveItem: (id: string) => void;    
 }
+
+export interface CART {
+    [key: string]: number;
+}

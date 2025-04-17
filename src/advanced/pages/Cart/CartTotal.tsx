@@ -7,6 +7,7 @@ import { AddButton } from "../Util/ButtonAddToCart";
 import { CartItemList } from "./CartItemList";
 import { OUT_OF_STOCKS, PRODUCTS } from "../../context/product";
 import { CART_ITEM } from "../../context/interface";
+import { CartPrice } from "./CartPrice";
 
 function CartTotal (){
 
@@ -60,9 +61,8 @@ function CartTotal (){
         <CartContainer>
             <Header/>
             <CartItemList items={cartItems} onChangeItem={handleQtyChange} onRemoveItem={handleRemoveQty}/>
-            <ProductOption
-                selectItemId={selectItemId}
-                onChange={handleProduct}/>
+            <CartPrice cartItems={cartItems} products={PRODUCTS}/>
+            <ProductOption selectItemId={selectItemId} onChange={handleProduct}/>
             <AddButton
                 selectItemId={selectItemId} 
                 cartItems={cartItems} 
