@@ -8,6 +8,11 @@ export interface PRODUCTS {
     stock: number,
 };
 
+export interface OPTION_EVENT{
+    selectItemId: string,
+    onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+}
+
 //장바구니에 담긴 상품
 export interface CART_ITEM {
     id: string,
