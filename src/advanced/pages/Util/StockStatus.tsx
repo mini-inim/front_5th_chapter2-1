@@ -1,7 +1,7 @@
 import React from "react";
 import { PRODUCTS } from "../../context/product";
 
-function ProductOption({selectItemId, onChange}){
+function ProductOption({product, selectItemId, onChange}){
     return(
         <select 
             id="product-select" 
@@ -9,7 +9,7 @@ function ProductOption({selectItemId, onChange}){
             value = {selectItemId}
             onChange = {onChange}
         >
-            {PRODUCTS.map((item) => (
+            {product.map((item) => (
                 <option
                     key={item.id}
                     value={item.id}
@@ -22,14 +22,11 @@ function ProductOption({selectItemId, onChange}){
     )
 }
 
-function ProductInfo(){
-    let infoMsg = '';
-
-    PRODUCTS.forEach(function(item){
-        if(item.stock < 5 ){
-            infoMsg += `${item.name}: ${item.stock > 0 ? `재고 부족 (${item.stock}개 남음)` : '품절'} \n`;
-        }
-    });
+function ProductInfo({product}){
+    const infoMsg = product
+        .filter(item => item.stock < 5)
+        .map(item => `${item.name}: ${item.stock > 0 ? `재고 부족 (${item.stock}개 남음)` : '품절'}`)
+        .join('\n');
 
     return (
         <div id="stock-status" className="text-sm text-gray-500 mt-2">

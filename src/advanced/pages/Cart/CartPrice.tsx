@@ -1,14 +1,8 @@
 import React, { useMemo } from "react";
-import { CART_ITEM, PRODUCTS } from "../../context/interface";
 import { DISCOUNTS } from "../../context/product";
 
 
-interface ReceiptProps {
-  cartItems: CART_ITEM[];
-  products: PRODUCTS[];
-}
-
-const CartPrice: React.FC<ReceiptProps> = ({ cartItems, products }) => {
+const CartPrice = ({ cartItems, products }) => {
   const {
     totalBeforeDiscount,
     totalAfterDiscount,

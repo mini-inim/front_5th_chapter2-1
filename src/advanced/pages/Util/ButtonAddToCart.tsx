@@ -2,10 +2,10 @@ import React from "react"
 import { addCartItem } from "../../services/Item/AddItem"
 import { useState } from "react"
 
-function AddButton({selectItemId, cartItems, setCartItems}){
+function AddButton({product, selectItemId, cartItems, setCartItems}){
 
     const handleClick = () => {
-        addCartItem(selectItemId, cartItems, setCartItems);
+        addCartItem(product, selectItemId, cartItems, setCartItems);
     }
 
     return (

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { PRODUCTS } from "../context/interface";
+import { PRODUCT } from "../context/interface";
 
 interface UseSaleAlertsProps {
-  products: PRODUCTS[];
-  setProducts: React.Dispatch<React.SetStateAction<PRODUCTS[]>>;
+  products: PRODUCT[];
+  setProducts: React.Dispatch<React.SetStateAction<PRODUCT[]>>;
   lastSelectedId?: string;
 }
 

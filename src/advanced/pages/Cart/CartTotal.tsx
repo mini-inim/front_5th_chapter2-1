@@ -6,6 +6,7 @@ import { useState } from "react";
 import { AddButton } from "../Util/ButtonAddToCart";
 import { CartItemList } from "./CartItemList";
 import { OUT_OF_STOCKS, PRODUCTS } from "../../context/product";
+import { PRODUCT } from "../../context/interface";
 import { CART_ITEM } from "../../context/interface";
 import { CartPrice } from "./CartPrice";
 import { useSaleAlerts } from "../../services/AlertSales";
@@ -15,7 +16,7 @@ function CartTotal (){
     //현재 선택 중인 품목
     const [selectItemId, setSelectItemId] = useState('p1');
 
-    const [product, setProduct] = useState(PRODUCTS);
+    const [product, setProduct] = useState<PRODUCT[]>(PRODUCTS);
 
     //장바구니에 담아둔 품목 리스트
     const [cartItems, setCartItems] = useState<CART_ITEM[]>([]);
@@ -73,13 +74,14 @@ function CartTotal (){
         <CartContainer>
             <Header/>
             <CartItemList items={cartItems} onChangeItem={handleQtyChange} onRemoveItem={handleRemoveQty}/>
-            <CartPrice cartItems={cartItems} products={PRODUCTS}/>
-            <ProductOption selectItemId={selectItemId} onChange={handleProduct}/>
+            <CartPrice cartItems={cartItems} products={product}/>
+            <ProductOption selectItemId={selectItemId} onChange={handleProduct} product={product}/>
             <AddButton
+                product={product}
                 selectItemId={selectItemId} 
                 cartItems={cartItems} 
                 setCartItems={setCartItems}/>
-            <ProductInfo/>
+            <ProductInfo product={product}/>
         </CartContainer>
     )
 }
