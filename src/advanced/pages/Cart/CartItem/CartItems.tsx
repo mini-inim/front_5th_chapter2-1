@@ -1,6 +1,6 @@
 import React from "react";
-import { AMOUNT_OF_STOCKS } from "../../context/product";
-import { CART_ITEM_EVENT } from "../../context/interface";
+import { AMOUNT_OF_STOCKS } from "../../../context/product";
+import { CART_ITEM_EVENT } from "../../../context/interface";
 import { CartItemButton } from "./CartItemButton";
 import { memo } from "react";
 

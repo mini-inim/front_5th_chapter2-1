@@ -1,6 +1,6 @@
 import React from "react";
-import { OUT_OF_STOCKS } from "../../context/product";
-import { CART_ITEM_EVENT } from "../../context/interface";
+import { OUT_OF_STOCKS } from "../../../context/product";
+import { CART_ITEM_EVENT } from "../../../context/interface";
 
 
 function handleDecrease({item, qty, onChangeItem, onRemoveItem}: CART_ITEM_EVENT){
