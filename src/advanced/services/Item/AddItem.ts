@@ -1,4 +1,4 @@
-import { OUT_OF_STOCKS, PRODUCTS } from "../context/product";
+import { OUT_OF_STOCKS, PRODUCTS } from "../../context/product";
 
 function addCartItem(selectItemId, cartItems, setCartItems){
     const product = PRODUCTS.find(item => item.id === selectItemId);

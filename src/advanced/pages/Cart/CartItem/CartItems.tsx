@@ -11,7 +11,7 @@ const CartItem = memo (
                 <span>{item.name} - {item.price}원 {AMOUNT_OF_STOCKS} {qty}</span>
                 <CartItemButton 
                     item={item}
-                    qty={0}
+                    qty={qty}
                     onChangeItem = {onChangeItem}
                     onRemoveItem = {onRemoveItem}
                 />

@@ -2,6 +2,9 @@ import React from "react";
 import { CartItem } from "./CartItem/CartItems";
 
 const CartItemList = ({items, onChangeItem, onRemoveItem}) =>  {
+
+    console.log("item: ", items)
+
     return (
         <div id="cart-items">
             {items.map((item) => (

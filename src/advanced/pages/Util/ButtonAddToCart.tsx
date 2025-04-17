@@ -1,5 +1,5 @@
 import React from "react"
-import { addCartItem } from "../../services/AddItem"
+import { addCartItem } from "../../services/Item/AddItem"
 import { useState } from "react"
 
 function AddButton({selectItemId, cartItems, setCartItems}){
