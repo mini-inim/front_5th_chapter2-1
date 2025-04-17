@@ -8,14 +8,26 @@ import { CartItemList } from "./CartItemList";
 import { OUT_OF_STOCKS, PRODUCTS } from "../../context/product";
 import { CART_ITEM } from "../../context/interface";
 import { CartPrice } from "./CartPrice";
+import { useSaleAlerts } from "../../services/AlertSales";
 
 function CartTotal (){
 
     //현재 선택 중인 품목
     const [selectItemId, setSelectItemId] = useState('p1');
 
+    const [product, setProduct] = useState(PRODUCTS);
+
     //장바구니에 담아둔 품목 리스트
     const [cartItems, setCartItems] = useState<CART_ITEM[]>([]);
+
+
+    //세일 alert
+    useSaleAlerts({
+        products: PRODUCTS,
+        setProducts: setProduct,
+        lastSelectedId: selectItemId,
+    });
+      
 
     const handleProduct = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectItemId(e.target.value);
